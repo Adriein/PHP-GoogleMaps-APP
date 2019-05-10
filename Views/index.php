@@ -20,21 +20,45 @@
     </style>
   </head>
   <body>
-    <form action="index.html" method="post">
-      <select class="" name="">
-        <option value="1">Bares</option>
-        <option value="2">Restaurantes</option>
-        <option value="3">Discotecas</option>
+    <form action="index.php" method="post">
+      <select class="" name="allLocales">
+        <?php
+          require_once("../Controller/Controller.php");
+          $controller = new Controller();
+          $allLocales = $controller->getLocales();
+
+          foreach ($allLocales as $local) {
+            echo"<option value=".$local->getId().">".$local->getNombre()."</option>";
+          }
+        ?>
       </select>
+      <input type="submit" name="submit" value="Buscar">
     </form>
     <div id="map"></div>
     <script>
       var map;
       function initMap() {
+        var barcelona = {lat: 41.387388, lng: 2.153975}
         map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 8
+          center: barcelona,
+          zoom: 13
         });
+
+        <?php
+          if(isset($_POST['submit'])){
+            require_once("../Controller/Controller.php");
+            $controller = new Controller();
+          $allCoordenadas = $controller->searchPlace($_POST['allLocales']);
+
+            foreach ($allCoordenadas as $coordenadas) {
+
+        ?>
+        var site = {<?php echo$coordenadas->getCoordenadas()?>}
+        var marker = new google.maps.Marker({position: site, map: map});
+        <?php
+            }
+          }
+         ?>
       }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKIfc1y_We_ziNNpMf0rm-XneFBFpCF2M&callback=initMap"

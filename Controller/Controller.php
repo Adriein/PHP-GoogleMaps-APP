@@ -1,5 +1,5 @@
 <?php
-require_once("../DAO/GoogleMapsDAO");
+require_once("../DAO/GoogleMapsDAO.php");
 
 class Controller{
 
@@ -12,6 +12,11 @@ class Controller{
 
   public function getLocales(){
     return $this->googleMapsDAO->getLocales();
+
+  }
+
+  public function searchPlace($local){
+    return $this->googleMapsDAO->searchPlace($local);
 
   }
 
