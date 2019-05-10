@@ -49,7 +49,7 @@
             require_once("../Controller/Controller.php");
             $controller = new Controller();
           $allCoordenadas = $controller->searchPlace($_POST['allLocales']);
-          //echo var_dump($allCoordenadas);
+
             foreach ($allCoordenadas as $coordenadas) {
 
         ?>
@@ -59,6 +59,7 @@
           map: map,
           title:'<?php echo$coordenadas->getNombreLocal()?>'
         });
+        map.setCenter(marker.getPosition());
         <?php
             }
           }
