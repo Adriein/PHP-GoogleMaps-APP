@@ -57,7 +57,7 @@
         var marker = new google.maps.Marker({
           position: site,
           map: map,
-          title:'adri'
+          title:'<?php echo$coordenadas->getNombreLocal()?>'
         });
         <?php
             }
