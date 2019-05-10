@@ -2,19 +2,13 @@
 
 class Coordenadas{
 
-  private $id;
   private $coordenadas;
-  private $local;
+  private $nombreLocal;
 
-  public function __construct($id, $coordenadas, $local){
-    $this->id = $id;
+  public function __construct($coordenadas, $nombreLocal){
+
     $this->coordenadas = $coordenadas;
-    $this->local = $local;
-
-  }
-
-  public function getId(){
-    return $this->id;
+    $this->nombreLocal = $nombreLocal;
 
   }
 
@@ -23,8 +17,8 @@ class Coordenadas{
 
   }
 
-  public function getLocal(){
-    return $this->local;
+  public function getNombreLocal(){
+    return $this->nombreLocal;
 
   }
 }

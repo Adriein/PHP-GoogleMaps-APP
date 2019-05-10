@@ -49,12 +49,16 @@
             require_once("../Controller/Controller.php");
             $controller = new Controller();
           $allCoordenadas = $controller->searchPlace($_POST['allLocales']);
-
+          //echo var_dump($allCoordenadas);
             foreach ($allCoordenadas as $coordenadas) {
 
         ?>
         var site = {<?php echo$coordenadas->getCoordenadas()?>}
-        var marker = new google.maps.Marker({position: site, map: map});
+        var marker = new google.maps.Marker({
+          position: site,
+          map: map,
+          title:'adri'
+        });
         <?php
             }
           }

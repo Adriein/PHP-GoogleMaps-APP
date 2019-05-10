@@ -23,10 +23,12 @@ class GoogleMapsDAO{
 
   public function searchPlace($local){
     $this->connection = new DBConnection();
-    $this->connection->executeQuery("select * from coordenadas where locales =".$local);
+    $this->connection->executeQuery("select coordenadas.coordenada, locales.nombre from coordenadas
+                                        inner join locales on coordenadas.locales = locales.identificador where coordenadas.locales =".$local);
+
 
     foreach ($this->connection->getRows() as $coordenada) {
-      $allCoordenadas[] = new Coordenadas($coordenada['identificador'], $coordenada['coordenada'], $coordenada['locales']);
+      $allCoordenadas[] = new Coordenadas($coordenada['coordenada'], $coordenada['nombre']);
 
     }
 
